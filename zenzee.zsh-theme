@@ -1,7 +1,7 @@
 setopt prompt_subst
 
 PROMPT_NORMAL='❯'
-PROMPT_ROOT='❯❯❯❯'
+PROMPT_ROOT='⌗'
 
 GREEN="%{\e[38;5;2m%}"
 RED="%{\e[38;5;1m%}"
