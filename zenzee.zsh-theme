@@ -66,8 +66,7 @@ function __prompt_git () {
 }
 
 function precmd () {
-  echo ''
-  echo "$(__prompt_path)$(__prompt_git)$RESET"
+  print -P "\n$(__prompt_path)$(__prompt_git)$RESET"
 }
 
 PROMPT='$(__prompt_main) ' # left
