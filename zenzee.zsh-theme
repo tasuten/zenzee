@@ -3,10 +3,10 @@ setopt prompt_subst
 PROMPT_NORMAL='❯'
 PROMPT_ROOT='❯❯❯❯'
 
-GREEN="\e[38;5;2m"
-RED="\e[38;5;1m"
-DARKGRAY="\e[38;5;8m"
-RESET="\e[0m"
+GREEN="%{\e[38;5;2m%}"
+RED="%{\e[38;5;1m%}"
+DARKGRAY="%{\e[38;5;8m%}"
+RESET="%{\e[0m%}"
 
 function __prompt_status_code () {
   echo -n "%(0?.$GREEN.$RED)"
