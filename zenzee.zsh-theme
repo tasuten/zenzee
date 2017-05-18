@@ -42,19 +42,20 @@ function __prompt_git () {
   local branch
   branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 
-  local st
+  local st bst
   st="$(git status --porcelain --branch 2> /dev/null)"
+  bst="$(echo "$st" | head -n1 )"
 
 
   local remote_status
-  if echo "$st" | grep -v '^## .*\.\.\.origin' >/dev/null 2>&1; then
+  if echo "$bst" | grep -v '^## .*\.\.\.origin' >/dev/null 2>&1; then
     # local only branch
     remote_status=' ⨱'
-  elif echo "$st" | grep '^## .*diverged' >/dev/null 2>&1; then
+  elif echo "$bst" | grep '^## .*diverged' >/dev/null 2>&1; then
     remote_status=' ⑂'
-  elif echo "$st" | grep '^## .*behind' >/dev/null 2>&1; then
+  elif echo "$bst" | grep '^## .*behind' >/dev/null 2>&1; then
     remote_status=' ⇣'
-  elif echo "$st" | grep '^## .*ahead' >/dev/null 2>&1; then
+  elif echo "$bst" | grep '^## .*ahead' >/dev/null 2>&1; then
     remote_status=' ⇡'
   else
     remote_status=''
