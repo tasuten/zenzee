@@ -47,12 +47,17 @@ function __prompt_git () {
 
 
   local remote_status
-  if echo "$st" | grep '^## .*diverged' >/dev/null 2>&1; then
+  if echo "$st" | grep -v '^## .*\.\.\.origin' >/dev/null 2>&1; then
+    # local only branch
+    remote_status=' ⨱'
+  elif echo "$st" | grep '^## .*diverged' >/dev/null 2>&1; then
     remote_status=' ⑂'
   elif echo "$st" | grep '^## .*behind' >/dev/null 2>&1; then
     remote_status=' ⇣'
   elif echo "$st" | grep '^## .*ahead' >/dev/null 2>&1; then
     remote_status=' ⇡'
+  else
+    remote_status=''
   fi
 
   local branch_color # is_dirty?
