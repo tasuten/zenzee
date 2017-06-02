@@ -78,11 +78,9 @@ function __prompt_git () {
   echo -n " $branch_color$branch$RESET$remote_status"
 }
 
-function precmd () {
-  print -P "\n$(__prompt_path)$(__prompt_git)$RESET"
-}
-
-PROMPT='$(__prompt_main) ' # left
+PROMPT='
+$(__prompt_path)$(__prompt_git)
+$(__prompt_main) '
 
 
 # vim:set filetype=zsh:
