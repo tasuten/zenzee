@@ -5,6 +5,7 @@ PROMPT_ROOT='⌗'
 
 GREEN="%{\e[38;5;2m%}"
 RED="%{\e[38;5;1m%}"
+YELLOW="%{\e[38;5;11m%}"
 DARKGRAY="%{\e[38;5;8m%}"
 RESET="%{\e[0m%}"
 
@@ -61,9 +62,15 @@ function __prompt_git () {
     remote_status=''
   fi
 
-  local branch_color # is_dirty?
+  local branch_color
+  # is_dirty?
   if echo "$st" | grep -v '^##' >/dev/null 2>&1; then
-    branch_color=$RED
+    # dirty, but you'll exec git commit, it will be clean
+    if [[ -z $(echo "$st" | grep -v '^##' | cut -c2 | tr -d ' \n' 2>/dev/null) ]]; then
+      branch_color=$YELLOW
+    else
+      branch_color=$RED
+    fi
   else
     branch_color=$GREEN
   fi
